@@ -71,6 +71,7 @@ plot(Quads, add=TRUE)  # Add quadrat grid
 # Compute the density for each quadrat (in counts per km2)
 Q   <- quadratcount(HFC, nx= 6, ny=3)
 Q.d <- intensity(Quads)
+Q.d
 
 
 # Plot the density
@@ -80,9 +81,11 @@ plot(HFC, pch=20, cex=1.2, col=rgb(0,0,0,.5), add=TRUE)  # Add points
 
 
 #Quadrant Density On a tessellated surface
-databrks  <- c( -Inf, 100, 120, 150 , Inf)  # Define the breaks
+databrks  <- c( -Inf, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130,
+                140, 150, 160, 170, Inf)  # Define the breaks
+
 # Zcut <- cut(pop.lg, breaks=databrks, labels=1:4)  # Classify the raster
-Zcut <- cut(pop, breaks=databrks, labels=1:4)  # Classify the raster
+Zcut <- cut(pop, breaks=databrks, labels=1:18)  # Classify the raster
 plot(Zcut)
 
 
@@ -103,7 +106,7 @@ Q.d
 
 
 #set style and plot
-cols <-  interp.colours(c("#edf8b1", "#7fcdbb" ,"#2c7fb8"), te$n)
+cols <-  interp.colours(c("#2d6a4f", "#faa307", "#ef233c"), te$n)
 plot( intensity(Q, image=TRUE), las=1, col=cols, main= "Tessellated")
 plot(HFC, pch=20, cex=1.2, col=rgb(0,0,0), add=TRUE)
 
