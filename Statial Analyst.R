@@ -7,7 +7,10 @@ library(ggplot2)
 # Load and read the datasets for plotting
 
 poly  <-  read_sf("E:/Allan Wafula/My Works/MyCodes/R-Spatial Analyst/DATA_R/E_Ravine.shp")
-pts  <- read_sf("E:/Allan Wafula/My Works/MyCodes/R-Spatial Analyst/DATA_R/HFC.shp")
+#pts  <- read_sf("E:/Allan Wafula/My Works/MyCodes/R-Spatial Analyst/DATA_R/HFC.shp")
+pts  <- read_sf("E:/Allan Wafula/My Works/MyCodes/R-Spatial Analyst/DATA_R/HFC_Proj3.shp")
+
+#print(pts)
 
 #Plot the ward boundaries and the health facilities using ggplot
 ggplot() + 
@@ -25,17 +28,18 @@ region <- rescale(region, 1000)
 
 
 # Load a HFC.shp point feature shapefile
-s  <- st_read("E:/Allan Wafula/My Works/MyCodes/R-Spatial Analyst/DATA_R/HFC.shp")  
+s  <- st_read("E:/Allan Wafula/My Works/MyCodes/R-Spatial Analyst/DATA_R/HFC_Proj3.shp")  
 HFC <-  as.ppp(s)
 marks(HFC) <- NULL
-HFC <- rescale(HFC, 1000)
+#HFC <- rescale(HFC, 1000)
 Window(HFC)  
 
 
 # Load a  population density raster layer
 #img  <- raster("E:/Allan Wafula/My Works/MyCodes/R-Spatial Analyst/DATA_R/Ravine_Pop.img")
 #img  <- raster("E:/Allan Wafula/My Works/MyCodes/R-Spatial Analyst/DATA_R/Ravine_Mask.img")
-img  <- raster("E:/Allan Wafula/My Works/MyCodes/R-Spatial Analyst/DATA_R/Ravine_Mask_Proj.img")
+img  <- raster("E:/Allan Wafula/My Works/MyCodes/R-Spatial Analyst/DATA_R/Ravine_Mask_Proj2.img")
+print(img)
 pop  <- as.im(img)
 pop <- rescale(pop, 1000)
 
