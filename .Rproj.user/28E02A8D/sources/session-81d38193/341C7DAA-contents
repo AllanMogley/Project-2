@@ -49,10 +49,16 @@ plot(HFC, main=NULL, cols=rgb(0,0,0,.2), pch=20)
 #Histogram of population layer
 hist(pop, main=NULL, las=1)
 
+
+# Error 1
+#-------------------------------------------------------------------------------
 #Transform the skewed pop data through log
 pop.lg <- log(pop)
 pop.lg <- rescale(pop.lg, 1000)
 hist(pop.lg, main=NULL, las=1)
+#-------------------------------------------------------------------------------
+
+
 
 #Compute the quadrat density
 Quads <- quadratcount(HFC, nx= 6, ny=3)
@@ -72,22 +78,27 @@ plot(intensity(Q, image=TRUE), main= "Point Density Per Quadrat", las=1)  # Plot
 plot(HFC, pch=20, cex=1.2, col=rgb(0,0,0,.5), add=TRUE)  # Add points
 
 
-#-------------------------------------------------------------------------------
+
 #Quadrant Density On a tessellated surface
-databrks  <- c( -Inf, 4, 6, 8 , Inf)  # Define the breaks
-Zcut <- cut(pop.lg, breaks=databrks, labels=1:4)  # Classify the raster
-Zcut <- cut(pop.lg, breaks=databrks, labels=1:4)  # Classify the raster
+databrks  <- c( -Inf, 100, 120, 150 , Inf)  # Define the breaks
+# Zcut <- cut(pop.lg, breaks=databrks, labels=1:4)  # Classify the raster
+Zcut <- cut(pop, breaks=databrks, labels=1:4)  # Classify the raster
 plot(Zcut)
+
+
+
+
+# Error 2
 #-------------------------------------------------------------------------------
-
-
-
 te <- tess(image=Zcut)  # Create a tessellated surface
 tiles(te)
 plot(te, main="Tessellated Surface")
 Q   <- quadratcount(HFC, tess = te)  # Tally counts
 Q.d <- intensity(Q)  # Compute density
 Q.d
+#-------------------------------------------------------------------------------
+
+
 
 
 
